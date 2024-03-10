@@ -1,67 +1,59 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    font-style: normal
+    font-style: normal;
+    box-sizing: border-box;
 }
 body{
     width: 100%;
 }
 header{
-    border: 0px solid black;
-    width: 100%;
-    display: flex;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    background: #fff;
+    border: 0px solid black;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
-    padding: 10px;
-    z-index: 10;
+    padding: 5px 20px;
+    z-index: 100;
     box-shadow:  0.5px 2px rgba(0, 0, 0, 0.1);
 }
-.left-container{
-    width: 20%;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.left-container img{
+.logo img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-.right-container{
-    width: auto;
-}
-.hidden{
-    display: none;
-}
-.right-container ul{
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
+.navbar a{
     font-size: 18px;
-    font-weight: 700;
-}
-.right-container ul li{
-    padding: 0px 10px;
-}
-
-.right-container a{
-    text-decoration: none;
     color: #383838;
+    text-decoration: none;
+    margin-left: 32px;
+    font-weight: bold;
     padding: 8px;
 }
-.right-container a:hover{
+.navbar a:hover{
     background-color: #0c645b;
     color: white;
 }
-.right-container a.active{
+.navbar a.active{
     background: #0c645b;
     color: #fff;
+}
+.icons{
+    position: absolute;
+    right: 7%;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+#check{
+    display: none;
 }
 .about-container{
     width: 100%;
@@ -183,76 +175,30 @@ ul li.footer{
     gap: 10px;
 }
 @media only screen and (max-device-width: 430px){
-    body{
-        width: 100%;
+    .icons{
+        display: inline-flex;
     }
-    header{
-        width: 100%;
-        display: flex;
-    }
-    .right-container{
-        display: none;
-    }
-    .hidden{
-        display: block;
-        font-size: 20px;
-        font-weight: 400;
-        text-align: start;
-    }
-    .hidden ul, .hidden li{
-        margin: 0;
-        padding: 0;
-    }
-    .hidden ul{
-        list-style-type: none;
-        width: 100%;
-        background: #fff;
-        z-index: 10;
-        padding: 8px 32px;
-    }
-    .hidden li{
-        float: left;
-        position: relative;
-        width: 100%;
-        background: #fff;
-    }
-    .hidden a{
-        border: 0px solid black;
-        background: #fff;
-        color: #383838;
-        display: block;
-        font-size: 18px;
-        padding: 8px 32px;
-        text-align: center;
-        text-decoration: none;
-        transition: all 0.25s ease;
-    }
-    .hidden li a:hover{
-        background: #0c645b;
-        color: white;
-    }
-    .drop-down{
-        border: 0px solid black ;
-        right: 16px;
-        opacity: 0;
+    .navbar{
         position: absolute;
-        visibility: hidden;
-        z-index: 1;
-        border-radius: 12px;
-        padding: 10px;
-        
-    }
-    li:hover ul.drop-down{
-        opacity: 1;
-        top: 60px;
-        visibility: visible;
-        background-color: #fff;
+        top: 100%;
+        left: 0;
         width: 100%;
-        padding: 8px 32px;
+        height: 0;
+        background: white;
+        transition: .3s ease;
+        overflow: hidden;
     }
-    .fa-bars{
-        font-size: 30px;
-        width: 50px;
+    .navbar a{
+        display: block;
+        font-size: 25px;
+        margin: 12px 0;
+        text-align: center;
+    }
+    #check:checked~.icons #menu-icon{
+        display: block;
+    }
+    #check:checked~.navbar{
+        height: 22em;
     }
     .about-container{
         width: 100%;
@@ -294,18 +240,12 @@ ul li.footer{
     }
 }
 @media only screen and (max-device-width : 820px){
-    body{
+    header{
         width: 100%;
+        padding: 0;
     }
-    .left-container{
-        width: 100px;
-    }
-    .right-container ul{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-        padding-inline: 5px;
+    .navbar a{
+        margin: 8px;
     }
     .about-container{
         font-size: 15px;

@@ -1,0 +1,331 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    margin: 0;
+}
+header{
+    border: 0px solid black;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    padding: 10px 0;
+    z-index: 10;
+    box-shadow:  0.5px 2px rgba(0, 0, 0, 0.1);
+}
+.left-container{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.left-container img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.right-container{
+    width: auto;
+}
+.hidden{
+    display: none;
+}
+.right-container ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 700;
+}
+.right-container ul li{
+    padding: 0px 10px;
+}
+
+.right-container a{
+    text-decoration: none;
+    color: #383838;
+    padding: 8px;
+}
+.right-container a:hover{
+    background-color: #0c645b;
+    color: white;
+}
+.right-container a.active{
+    background: #0c645b;
+    color: #fff;
+}
+.main-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8em 3%;
+}
+.welcome{
+    width: 45%;
+    line-height: 30px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.profile-section{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+}
+.profile-section img{
+    width: 70%;
+    border-radius: 50%;
+    
+}
+.button-home{
+    display: flex;
+    gap: 35px;
+}
+.button-home button{
+    padding: 10px 48px;
+    background-color: #0c645b;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+}
+.button-home a{
+    text-decoration: none;
+    color: #383838;
+    border: 1px solid #383838;
+    padding: 8px 32px;
+    border-radius: 12px;
+    font-weight: 500;
+
+}
+footer{
+    background: #0f5346;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+}
+.icons-layout{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 8px 10%;
+    margin-bottom: 20px;
+}
+.hr, .left-hr{
+    border: 1px solid white;
+    width: 35%;
+}
+.icons-container{
+    display: flex;
+    gap: 30px;
+    font-size: 25px;
+    color: #fff;
+}
+.icons-container a{
+    color: #fff;
+}
+.next-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.next-container img{
+    width: 160px;
+    height: 35px;
+}
+.next-container p{
+    color: #fff;
+}
+.privacy-container{
+    display: flex;
+    justify-content : center;
+    bottom: 0;
+    padding: 10px 0;
+}
+.privacy-container ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+.privacy-container a{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+}
+.vr1{
+    border-right: 1px solid white;
+    height: 20px;
+    width: 0;
+}
+ul li.footer{
+    display: flex;
+    gap: 10px;
+}
+@media only screen and (max-device-width: 430px){
+    body{
+        width: 100%;
+    }
+    header{
+        width: 100%;
+        display: flex;
+    }
+    .right-container{
+        display: none;
+    }
+    .hidden{
+        display: block;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: start;
+    }
+    .hidden ul, .hidden li{
+        margin: 0;
+        padding: 0;
+    }
+    .hidden ul{
+        list-style-type: none;
+        width: 90%;
+        background: #fff;
+    }
+    .hidden li{
+        float: left;
+        position: relative;
+        width: 95%;
+    }
+    .hidden a{
+        border: 0px solid black;
+        background: #fff;
+        color: #383838;
+        display: block;
+        font-size: 18px;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+    .hidden li a:hover{
+        background: #0c645b;
+        color: white;
+    }
+    .drop-down{
+        border: 0px solid black ;
+        right: 16px;
+        opacity: 0;
+        position: absolute;
+        visibility: hidden;
+        z-index: 1;
+        border-radius: 12px;
+        padding: 10px;
+    }
+    li:hover ul.drop-down{
+        opacity: 1;
+        top: 60px;
+        visibility: visible;
+    }
+    .fa-bars{
+        font-size: 30px;
+        width: 50px;
+    }
+    .main-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        padding: 0 15px;
+    }
+    .welcome{
+        width: 100%;
+        padding: 0 15px;
+    }
+    footer{
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .vr1{
+        display: none;
+    }
+    .privacy-container ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-section{
+        width: 70%;
+    }
+    .profile-section img{
+        width: 21em;
+    }
+    .button-home button{
+        padding: 8px 32px;
+        font-size: 15px;
+    }
+} 
+    
+
+@media only screen and (max-device-width : 820px){
+    body{
+        width: 100%;
+    }
+    .left-container{
+        width: 100px;
+    }
+    .right-container ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+    }
+    .main-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 12em 0;
+    }
+
+    .welcome{
+        font-size: 20px;
+        line-height: 40px;
+    }
+    .welcome h3{
+        font-size: 20px;
+    }
+    .profile-section{
+        width: 45%;
+    }
+    .profile-section img{
+        width: 18em;
+       /* padding: 0 20px;*/
+    }
+    .button-home{
+        width: 100%;
+    }
+    .button-home button{
+        padding: 8px 32px;
+        font-size: 15px;
+    }
+    footer{
+        bottom: 0;
+        left: 0;
+        margin-bottom: 0;
+    }
+}

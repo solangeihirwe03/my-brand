@@ -60,7 +60,7 @@ header{
 }
 .heading{
     border: 0px solid white;
-    background-image: url(/images/Rectangle\ 1.png);
+    background-image: url(../images/Rectangle\ 1.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

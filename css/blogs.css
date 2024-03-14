@@ -69,23 +69,43 @@ header{
     width: 100%;
     display: flex;
     justify-content: space-around;
-    line-height: 25px;
 }
 .blog-layout div{
     width: 25%;
+    line-height: 25px;
 }
 .blog-layout div img.blog{
     width: 100%;
     height: 50%;
     padding-bottom: 30px;
 }
-div h3.blog-h3{
+a.blog-title{
+    text-decoration: none;
+    color: #383838;
     padding-bottom: 20px;
+    font-weight: bold;
 }
 div span.date{
     font-weight: 300;
     margin-bottom: 20px;
     color: #5b5b5b;
+}
+.blog-layout div p{
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+a.read-more{
+    text-decoration: none;
+    padding: 8px;
+    margin-top: 30px;
+    border: 1px solid #383838;
+}
+a.read-more:hover{
+    background-color: #0c645b;
+    color: #fff;
 }
 footer{
     margin-top: 60px;

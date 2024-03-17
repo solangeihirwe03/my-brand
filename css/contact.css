@@ -103,7 +103,7 @@ p.min-p{
 }
 .form-control{
     margin-bottom: 10px;
-    padding-bottom: 20px;
+    padding-bottom:30px;
     position: relative;
 }
 .user-container{
@@ -135,6 +135,8 @@ textarea{
     position: absolute;
     left: 0;
     visibility: hidden;
+    font-weight: 500;
+    font-size: 15px;
 }
 .form-control.error small{
     visibility: visible;

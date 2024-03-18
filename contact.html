@@ -39,17 +39,14 @@
             <form id="form" class="form">
                 <div class="user-container">
                     <div class="form-control">
-                        <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="your name" id="username">
                         <small></small>
                     </div>
                     <div class="form-control">
-                        <i class="fa-solid fa-phone"></i>
-                        <input type="text" placeholder="tour contact" id="contact">
+                        <input type="text" placeholder="your contact" id="contact">
                         <small></small>
                     </div>
                     <div class="form-control">
-                        <i class="fa-solid fa-envelope"></i>
                         <input type="email" placeholder="your email" id="email">
                         <small></small>
                     </div>
@@ -61,7 +58,7 @@
                     <small></small>
 
                 </div>
-                <button type="submit">SUBMIT</button>
+                <button type="submit" onclick="storeInputData()">SUBMIT</button>
                 <div id="success"></div>
             </form>
         </div>

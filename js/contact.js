@@ -113,4 +113,30 @@ form.addEventListener('submit', (e) => {
   checkEmail(email);
   checkTextarea(textarea)
  
+ 
 })
+function storeInputData() {
+  const name = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('textarea').value;
+  const phoneNumber = document.getElementById('contact').value;
+
+  let user_records = new Array();
+  user_records = JSON.parse(localStorage.getItem("users"))? JSON.parse(localStorage.getItem('users')):[]
+  if(user_records.some((v)=>{
+    return v.email == email
+  })){
+    alert("Duplicate data");
+  }
+  else{
+    user_records.push({
+      "name": name,
+      "contact": phoneNumber,
+      "email":email,
+      "textarea": message
+    })
+  }
+  localStorage.setItem('users', JSON.stringify(user_records));
+  console.log("Form Data Stored Successfully:", user_records); // Log data to console
+    alert("Message Sent Successfully!");
+}

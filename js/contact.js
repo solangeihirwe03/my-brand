@@ -37,7 +37,7 @@ function getFieldName(input) {
 }
 
 function checkUsername(input) {
-  let alphaExp = /^[a-zA-Z]+$/;
+  let alphaExp = /^[0-9a-zA-Z]+$/;
   if(input.value === ''){
     showError(input, `${getFieldName(input)} is required`)
   }
@@ -107,14 +107,28 @@ function checkTextarea(input) {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  checkRequired([userName, contact, email, textarea])
-  checkUsername(userName);
-  checkContact(contact);
-  checkEmail(email);
-  checkTextarea(textarea)
- 
- 
-})
+  clearErrors();
+
+  // Check for validation errors
+  checkRequired([userName, contact, email, textarea]);
+  let isUsernameValid = checkUsername(userName);
+  let isContactValid = checkContact(contact);
+  let isEmailValid = checkEmail(email);
+  let isTextareaValid = checkTextarea(textarea);
+
+  // If any field has errors, display an alert message
+  if (!isUsernameValid || !isContactValid || !isEmailValid || !isTextareaValid) {
+    checkRequired();
+    checkUsername(input);
+    checkEmail(input);
+    checkContact(input);
+    checkTextarea(input);
+    return; // Stop further execution
+  }else{
+    storeInputData();
+  }
+});
+
 function storeInputData() {
   const name = document.getElementById('username').value;
   const email = document.getElementById('email').value;
@@ -126,7 +140,7 @@ function storeInputData() {
   if(user_records.some((v)=>{
     return v.email == email
   })){
-    alert("Duplicate data");
+    return;
   }
   else{
     user_records.push({
@@ -137,6 +151,6 @@ function storeInputData() {
     })
   }
   localStorage.setItem('users', JSON.stringify(user_records));
-  console.log("Form Data Stored Successfully:", user_records); // Log data to console
+  console.log( user_records); // Log data to console
     alert("Message Sent Successfully!");
 }

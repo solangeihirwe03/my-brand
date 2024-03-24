@@ -56,8 +56,10 @@ function checkPassword(input){
 function confirmPassword(input){
     
     var passwordValue = document.getElementById("password").value;
-
-    if (input !== passwordValue) {
+    if(passwordValue === ""){
+        setError('confPasswordError', " ");
+    }
+    else if (input !== passwordValue) {
         setError('confPasswordError', "Passwords don't match");
     } else {
         resetErrors();
@@ -107,8 +109,11 @@ document.getElementById('email').addEventListener('input', function() {
 
 document.getElementById('password').addEventListener('input', function() {
     checkPassword(this);
+
+    
 });
 
 document.getElementById('confPasswordError').addEventListener('input', function() {
     confirmPassword(this);
 });
+

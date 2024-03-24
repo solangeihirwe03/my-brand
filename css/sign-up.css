@@ -1,0 +1,245 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 0px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    z-index: 100;
+    box-shadow:  0.5px 2px rgba(0, 0, 0, 0.1);
+}
+.logo img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.navbar a{
+    font-size: 18px;
+    color: #383838;
+    text-decoration: none;
+    margin-left: 32px;
+    font-weight: bold;
+    padding: 8px;
+}
+.navbar a:hover{
+    background-color: #0c645b;
+    color: white;
+}
+.navbar a.active{
+    background: #0c645b;
+    color: #fff;
+}
+.icons{
+    position: absolute;
+    right: 7%;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+#check{
+    display: none;
+}
+.heading{
+    padding-top: 6em;
+    padding-bottom: 2em;
+    color: #0c645b;
+    text-align: center;
+}
+.sign-up {
+    width: 500px;
+    padding:10% 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+  }
+  .form-container{
+    width: 30%;
+    border: 0px solid black;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+  }
+  .form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-control{
+    width: 90%;
+    padding-left: 5%;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none; 
+  }
+  .password{
+    display: flex;
+    align-items: center;
+  }
+  .fa-eye{
+    color: #acacac;
+  }
+  button{
+    width: 85%;
+    margin-top: 20px;
+    margin-left: 14px;
+    padding: 8px;
+    background: #0c645b;
+    font-size: 18px;
+    color: white;
+    border: none;
+  }
+  span.error {
+    border-color: red;
+  }
+  .success {
+    border-color: green;
+  }
+  span.error{
+    color: red;
+    font-weight: bold;
+  }
+  footer{
+    background: #0f5346;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+}
+.icons-layout{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 8px 10%;
+    margin-bottom: 20px;
+}
+.hr, .left-hr{
+    border: 1px solid white;
+    width: 35%;
+}
+.icons-container{
+    display: flex;
+    gap: 30px;
+    font-size: 25px;
+    color: #fff;
+}
+.icons-container a{
+    color: #fff;
+}
+.next-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.next-container img{
+    width: 160px;
+    height: 35px;
+}
+.next-container p{
+    color: #fff;
+}
+.privacy-container{
+    display: flex;
+    justify-content : center;
+    bottom: 0;
+    padding: 10px 0;
+}
+.privacy-container ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+.privacy-container a{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+}
+.vr1{
+    border-right: 1px solid white;
+    height: 20px;
+    width: 0;
+}
+ul li.footer{
+    display: flex;
+    gap: 10px;
+}
+@media only screen and (max-device-width: 430px){
+    .icons{
+        display: inline-flex;
+    }
+    .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: white;
+        transition: .3s ease;
+        overflow: hidden;
+    }
+    .navbar a{
+        display: block;
+        font-size: 25px;
+        margin: 12px 0;
+        text-align: center;
+    }
+    #check:checked~.icons #menu-icon{
+        display: block;
+    }
+    #check:checked~.navbar{
+        height: 22em;
+    }
+    .main-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        padding: 0 15px;
+    }
+    .welcome{
+        width: 100%;
+        padding: 0 15px;
+    }
+    footer{
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .vr1{
+        display: none;
+    }
+    .privacy-container ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

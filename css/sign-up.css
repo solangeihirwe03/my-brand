@@ -79,6 +79,7 @@ header{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 30px;
   }
   .form-control{
     width: 90%;
@@ -112,6 +113,14 @@ header{
     color: white;
     border: none;
   }
+  .other-options{
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .other-options a{
+    color: #0c645b;
+    font-size: 18px;
+  }
   span.error {
     border-color: red;
   }
@@ -120,7 +129,7 @@ header{
   }
   span.error{
     color: red;
-    font-weight: bold;
+    font-size: 12px;
   }
   footer{
     background: #0f5346;

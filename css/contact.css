@@ -11,6 +11,7 @@
 }
 body{
     width: 100%;
+    height: calc(100vh - 25vh);
 }
 header{
     position: fixed;
@@ -177,11 +178,9 @@ textarea{
     visibility: var(--success-color);
 }
 footer{
-    margin-top: 60px;
-    left: 0;
-    bottom: 0;
     background: #0f5346;
     width: 100%;
+    height: 27vh;
 }
 .icons-layout{
     display: flex;

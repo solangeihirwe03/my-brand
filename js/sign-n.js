@@ -1,4 +1,44 @@
-const usersInfo = JSON.parse(localStorage.getItem("usersInfo"));
+document.addEventListener("DOMContentLoaded", function(){
+    const loginform = document.getElementById("form");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+
+    // email.addEventListener("input", resetError(email));
+    // password.addEventListener("input", resetError(password));
+
+    loginform.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const loginData = {
+        email: email.value,
+        password: password.value,
+      };
+
+      try {
+        const response = await fetch(
+          "https://backend-mybrand-solange.onrender.com/api/users/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+          }
+        );
+
+        const responseData = await response.json();
+        if (response.ok) {
+          const token = responseData.data.token;
+          localStorage.setItem("token", token);
+          window.location.href = `index.html`
+          loginform.reset();
+        }
+      } catch (error) {
+        console.error("Error", error);
+      }
+    });
+})
 function checkEnteredEmail(input){
     const enteredEmail = input.value;
 
@@ -6,8 +46,6 @@ function checkEnteredEmail(input){
         setError("emailError", "Please enter your email.");
         return false;
     }
-
-    const user = usersInfo.find(user => user.email === enteredEmail);
 
     if (!user) {
         setError("emailError", "Email not found. Please try again.");
@@ -25,11 +63,6 @@ function checkEnteredPassword(input){
         return false;
     }
 
-    const passwrd = usersInfo.find(user => user.password === enteredPassword);
-    if(!passwrd){
-        setError("passwordError", "incorrect password");
-        return false;
-    }
     resetError("passwordError");
     return true;
 }

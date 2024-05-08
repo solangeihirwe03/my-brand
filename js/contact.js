@@ -1,156 +1,124 @@
-const form = document.getElementById('form');
-const userName = document.getElementById('username');
-const contact = document.getElementById('contact');
-const email = document.getElementById('email');
-const textarea = document.getElementById('textarea');
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form");
+  const userName = document.getElementById("username");
+  const contact = document.getElementById("contact");
+  const email = document.getElementById("email");
+  const textarea = document.getElementById("textarea");
 
-function showError(input, message) {
-  var formControl = input.parentElement;
-  formControl.classList.add('error');
-  const small = formControl.querySelector('small');
-  small.innerText = message
-}
+  userName.addEventListener("input", clearMessage);
+  contact.addEventListener("input", clearMessage);
+  email.addEventListener("input", clearMessage);
+  textarea.addEventListener("input", clearMessage);
 
-function showSuccess(input) {
-  var formControl = input.parentElement;
-  formControl.classList.remove('error');
-  const small = formControl.querySelector('small');
-  small.innerText = '';
-}
-function clearErrors() {
-  const errorMessages = document.querySelectorAll('small');
-  errorMessages.forEach(message => message.innerText = ''); // Clear error messages
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  success.innerText = ''; // Clear any previous success message
-}
-
-function checkRequired(inputArr) {
-  inputArr.forEach(function (input) {
-    if (input.value.trim() === '') {
-      showError(input, `${getFieldName(input)} is required`)
-    }
+    checkInputs();
   });
+
+async function checkInputs() {
+  const nameValue = userName.value.trim();
+  const emailValue = email.value.trim();
+  const contactValue = contact.value.trim();
+  const messageValue = textarea.value.trim();
+
+  if (nameValue === "") {
+    setErrorFor(userName, "Name is required");
+  } else if (!setTextError(nameValue)) {
+    setErrorFor(userName, "not a real name");
+  } else if (nameValue.length < 3) {
+    setErrorFor(userName, "insert full name");
+  } else {
+    setSuccessFor(userName);
+  }
+
+
+   let regexp = /^[0-9]+?$/;
+   if (contactValue === "") {
+     setErrorFor(contact, `${getFieldName(input)} is required`);
+   } else if (contactValue.length < 10 || !regexp.test(contactValue)) {
+     setErrorFor(
+       contact,
+       `contact must be at less than 10 numbers.`
+     );
+     return false;
+   }
+    else {
+     setSuccessFor(contact);
+   }
+
+  const EMAIL_REGEX =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if (emailValue === "") {
+    setErrorFor(email, `email is required`);
+  } else if (!EMAIL_REGEX.test(emailValue)) {
+    setErrorFor(email, "email is not valid");
+  } else {
+    setSuccessFor(email);
+  }
+
+
+  if (messageValue === "") {
+    return textarea, `$message is required`;
+  } else {
+    setSuccessFor(textarea);
+  }
+
+  if (nameValue != "" & setTextError(nameValue) &
+    !nameValue.length < 3 & emailValue != ""
+    & messageValue != "" & setTextError(messageValue)) {
+
+    const messageData = {
+      name: nameValue,
+      contact: contactValue,
+      email: emailValue,
+      message: messageValue
+    };
+
+    try{
+      const response = await fetch('https://backend-mybrand-solange.onrender.com/api/messages/createMessage', {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(messageData)
+      });
+
+      const data = await response.json();
+      console.log('Messages', data);
+
+      if(response.status === 200){
+        form.reset();
+        alert("message sent successfully");
+      }
+    }catch(error){
+      console.log('Error',error)
+    }
+
+    }
 }
-
-function getFieldName(input) {
-  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-}
-
-function checkUsername(input) {
-  let alphaExp = /^[0-9a-zA-Z]+$/;
-  if(input.value === ''){
-    showError(input, `${getFieldName(input)} is required`)
-  }
-  else if (input.value.length < 4) {
-    showError(input, `${getFieldName(input)} must be at least 4 characters long.`);
-    return false;
-  } else if (!alphaExp.test(input.value)) {
-    showError(input, `${getFieldName(input)} must contain only letters, no numbers.`);
-    return false;
-  }
-  else {
-    showSuccess(input)
-  }
-
-}
-function checkContact(input) {
-  let regexp = /^[0-9]+?$/;
-  if(input.value === ''){
-    showError(input, `${getFieldName(input)} is required`)
-  }
-  else if (input.value.length < 10) {
-    showError(input, `${getFieldName(input)} must be at less than 8 numbers.`);
-    return false;
-  } else if (!regexp.test(input.value)) {
-    showError(input, `${getFieldName(input)} must contain only numbers, not letters.`);
-    return false;
-  }
-
-  else {
-    showSuccess(input)
-  }
-}
-
-function checkEmail(input) {
-  const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  if(input.value === ''){
-    showError(input, `${getFieldName(input)} is required`)
-  }
-  else if (re.match(input.value.trim())) {
-    showError(input, 'email is not valid')
-  }
-
-  else {
-    showSuccess(input)
-  }
-}
-
-function checkTextarea(input) {
-  let letters = /^[0-9a-zA-Z]+$/;
-  if(input.value === ''){
-    return(input, `${getFieldName(input)} is required`)
-  }
-  else if(input.value.length < 4) {
-    showError(input, `${getFieldName(input)} must be at least 4 characters.`);
-    return false;
-  } else if (!letters.test(input.value)) {
-    showError(input, `${getFieldName(input)} must contain only numbers, not letters.`);
-    return false;
-  }
-
-  else {
-    showSuccess(input);
-  }
-}
-
-
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  clearErrors();
-
-  // Check for validation errors
-  checkRequired([userName, contact, email, textarea]);
-  let isUsernameValid = checkUsername(userName);
-  let isContactValid = checkContact(contact);
-  let isEmailValid = checkEmail(email);
-  let isTextareaValid = checkTextarea(textarea);
-
-  // If any field has errors, display an alert message
-  if (!isUsernameValid || !isContactValid || !isEmailValid || !isTextareaValid) {
-    checkRequired();
-    checkUsername(input);
-    checkEmail(input);
-    checkContact(input);
-    checkTextarea(input);
-    return; // Stop further execution
-  }else{
-    storeInputData();
-  }
 });
 
-function storeInputData() {
-  const name = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('textarea').value;
-  const phoneNumber = document.getElementById('contact').value;
+function setErrorFor(input,message){
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  formControl.classList.add('error')
+  small.innerText = message;
+};
+function clearMessage() {
+  const formControl = this.parentElement;
+  formControl.classList.remove("error");
+  formControl.classList.remove("success");
+  const small = formControl.querySelector("small");
+};
+function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.classList.remove("error");
+  setTimeout(() => {
+    formControl.className = formControl.className.replace(" success", "");
+  }, 1000);
+};
 
-  let user_records = new Array();
-  user_records = JSON.parse(localStorage.getItem("users"))? JSON.parse(localStorage.getItem('users')):[]
-  if(user_records.some((v)=>{
-    return v.email == email
-  })){
-    return;
-  }
-  else{
-    user_records.push({
-      "name": name,
-      "contact": phoneNumber,
-      "email":email,
-      "textarea": message
-    })
-  }
-  localStorage.setItem('users', JSON.stringify(user_records));
-  console.log( user_records); // Log data to console
-    alert("Message Sent Successfully!");
+function setTextError(text) {
+  return /^[a-zA-Z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]+$/.test(text);
 }

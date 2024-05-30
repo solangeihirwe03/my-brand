@@ -154,3 +154,5 @@ function storeInputData() {
   console.log( user_records); // Log data to console
     alert("Message Sent Successfully!");
 }
+
+const response = await fetch()
